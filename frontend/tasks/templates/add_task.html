@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load static %}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Agregar Tarea</title>
+    <link rel="stylesheet" href="{% static 'task/styles.css' %}">
+</head>
+<body>
+    <h1>Agregar Tarea</h1>
+    <form method="POST">
+        {% csrf_token %}
+        <label for="title">Título:</label>
+        <input type="text" id="title" name="title" required>
+        <label for="description">Descripción:</label>
+        <textarea id="description" name="description" required></textarea>
+        <button type="submit">Guardar</button>
+        <a href="{% url 'task_list' %}">Regresar</a>
+    </form>
+    
+</body>
+</html>

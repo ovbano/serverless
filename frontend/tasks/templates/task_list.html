@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load static %}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lista de Tareas</title>
+    <link rel="stylesheet" href="{% static 'task/styles.css' %}">
+</head>
+<body>
+    <h1>Lista de Tareas</h1>
+    <div class="center-container">
+        <a href="{% url 'add_task' %}" class="btn-primary">Agregar Tarea</a>
+    </div>    
+    {% if tasks %}
+    <ul>
+        {% for task in tasks %}
+            <li>
+                <strong>{{ task.title }}</strong>: {{ task.description }}
+                <div>
+                    <a href="{% url 'update_task' task.id %}">
+                        <button class="edit-btn">Editar</button>
+                    </a>
+                    <a href="{% url 'delete_task' task.id %}">
+                        <button class="delete-btn">Eliminar</button>
+                    </a>
+                </div>
+            </li>
+        {% endfor %}
+    </ul>
+    {% else %}
+        <p>No se encontraron tareas.</p>
+    {% endif %}
+    <footer>&copy; 2024 Mi Lista de Tareas</footer>
+</body>
+</html>
